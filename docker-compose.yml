@@ -38,7 +38,7 @@ services:
       lagoon.persistent.name: nginx # mount the persistent storage of nginx into this container
       lagoon.persistent: /app/web/sites/default/files/ # location where the persistent storage should be mounted
     << : *default-volumes # loads the defined volumes from the top
-    user: root
+    << : *default-user # loads the defined volumes from the top
     volumes_from: # mount the ssh-agent from the pygmy or cachalot ssh-agent
       - container:amazeeio-ssh-agent
     environment:
@@ -62,6 +62,7 @@ services:
     environment:
       << : *default-environment # loads the defined environment variables from the top
       LAGOON_LOCALDEV_URL: nginx-drupal-example.docker.amazee.io # generate another route for nginx, by default we go to varnish
+      NGINX_LISTEN: 8080
     networks:
       - amazeeio-network
       - default
