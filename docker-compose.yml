@@ -54,7 +54,7 @@ services:
       lagoon.type: nginx-php-persistent
       lagoon.persistent: /app/web/sites/default/files/ # define where the persistent storage should be mounted too
     << : *default-volumes # loads the defined volumes from the top
-    << : *default-user # uses the defined user from top
+    user: root
     depends_on:
       - cli # basically just tells docker-compose to build the cli first
     environment:
